@@ -20,5 +20,7 @@
     "react"
   ],
   "rules": {
+    "react/function-component-definition": "off",
+    "arrow-body-style": "off"
   }
 }
