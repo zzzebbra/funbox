@@ -7,13 +7,14 @@ export type PinMarkerProps = {
   pin: TPin;
   onClick: (pin: TPin) => void;
   setMarkerRef: (marker: Marker | null, key: string) => void;
+  setPins: React.Dispatch<React.SetStateAction<TPin[]>>
 };
 
 /**
  * Wrapper Component for an AdvancedMarker for a single tree.
  */
 export const PinMarker = (props: PinMarkerProps) => {
-  const { pin, onClick, setMarkerRef } = props;
+  const { pin, onClick, setMarkerRef, setPins } = props;
 
   const handleClick = useCallback(() => onClick(pin), [onClick, pin]);
   const ref = useCallback(
@@ -23,10 +24,20 @@ export const PinMarker = (props: PinMarkerProps) => {
   );
 
   return (
-    <AdvancedMarker position={pin.coordinates} ref={ref} onClick={handleClick} draggable
-      // onDrag={e =>
-      //   setCenter({ lat: e.latLng?.lat() ?? 0, lng: e.latLng?.lng() ?? 0 })
-      // }
+    <AdvancedMarker
+      position={pin.coordinates}
+      ref={ref}
+      onClick={handleClick}
+      draggable
+      onDrag={(e) => {
+        setPins((pins) => {
+          const modifiedPin = pins.find((p) => p.key === pin.key);
+          modifiedPin.coordinates.lat = e.latLng?.lat();
+          modifiedPin.coordinates.lng = e.latLng?.lng();
+
+          return [...pins]
+        })
+      }}
     >
       <Pin />
     </AdvancedMarker>

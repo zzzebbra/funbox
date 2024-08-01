@@ -1,5 +1,6 @@
 @import '/src/App.css';
 @import '/src/components/MapComponent/MapComponent.css';
+@import '/src/components/PinAddForm/PinAddForm.css';
 
 body {
   margin: 0;
