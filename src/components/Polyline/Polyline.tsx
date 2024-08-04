@@ -66,14 +66,12 @@ function usePolyline(props: PolylineProps) {
 
   const map = useContext(GoogleMapsContext)?.map;
 
-  // update the path with the encodedPath
   useMemo(() => {
     if (!encodedPath || !geometryLibrary) return;
     const path = geometryLibrary.encoding.decodePath(encodedPath);
     polyline.setPath(path);
   }, [polyline, encodedPath, geometryLibrary]);
 
-  // create polyline instance and add to the map once the map is available
   useEffect(() => {
     if (!map) {
       if (map === undefined)

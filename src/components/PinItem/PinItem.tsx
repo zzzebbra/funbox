@@ -46,7 +46,6 @@ const PinItem = ({ name, pinKey, deletePin }: TProps): JSX.Element => {
           aria-label="Drag"
           className="pin-item__drag"
           ref={setNodeRef}
-          style={style}
           {...attributes}
           {...listeners}
           data-cy="pin-item-drag-button"
