@@ -15,8 +15,25 @@
   transition: all .3s linear;
 }
 
+.add-button_disabled {
+  background: rgba(239, 239, 239, 0.3);
+  color: rgba(16, 16, 16, 0.3);
+}
+
+.add-button_disabled:hover {
+  cursor: not-allowed;
+  opacity: 1;
+}
+
 .add-input {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
- }
+  border-radius: 8px;
+  border: 1px solid grey;
+}
+
+.add-input:focus {
+  outline: none;
+  border: 1px solid #50a9f7;
+}

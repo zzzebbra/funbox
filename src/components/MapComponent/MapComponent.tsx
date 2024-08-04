@@ -5,7 +5,7 @@ import {
 } from "@vis.gl/react-google-maps";
 import { type Marker } from '@googlemaps/markerclusterer';
 import { Polyline } from "../Polyline/Polyline";
-import { TPin } from "../../types/pins";
+import type { TPin } from "../../types/pins";
 import { PinMarker } from "../PinMarker/PinMarker";
 
 export type TProps = { pins: TPin[], setPins: React.Dispatch<React.SetStateAction<TPin[]>> }
@@ -25,8 +25,6 @@ const MapComponent = ({ pins, setPins }: TProps) => {
     [pins, selectedPinKey]
   );
 
-  // this callback will effectively get passsed as ref to the markers to keep
-  // tracks of markers currently on the map
   const setMarkerRef = useCallback((marker: Marker | null, key: string) => {
     setMarkers((prevMarkers) => {
       if ((marker && prevMarkers[key]) || (!marker && !prevMarkers[key]))
@@ -35,6 +33,7 @@ const MapComponent = ({ pins, setPins }: TProps) => {
       if (marker) {
         return { ...prevMarkers, [key]: marker };
       }
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       const { [key]: _, ...newMarkers } = prevMarkers;
 
       return newMarkers;
@@ -62,16 +61,16 @@ const MapComponent = ({ pins, setPins }: TProps) => {
           path={pinsCoordinates}
           strokeWeight={6}
           strokeColor="#ff22cc88"
-          draggable
         />
         {pins && pins.map((pin) => {
-          return (<PinMarker
-            key={pin.key}
-            onClick={handleMarkerClick}
-            setMarkerRef={setMarkerRef}
-            setPins={setPins}
-            pin={pin}
-          />)
+          return (
+            <PinMarker
+              key={pin.key}
+              onClick={handleMarkerClick}
+              setMarkerRef={setMarkerRef}
+              setPins={setPins}
+              pin={pin}
+            />)
         })}
         {selectedPinKey && (
           <InfoWindow

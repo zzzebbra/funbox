@@ -1,7 +1,5 @@
 export type TPin = {
   name: string,
-  coordinates: google.maps.LatLng | google.maps.LatLngLiteral,
+  coordinates: { lat: number, lng: number },
   key: string
 }
-
-// google.maps.LatLng | google.maps.LatLngLiteral

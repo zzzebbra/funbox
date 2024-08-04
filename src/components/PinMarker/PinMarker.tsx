@@ -1,7 +1,7 @@
 import type { Marker } from '@googlemaps/markerclusterer';
 import React, { useCallback } from 'react';
 import { AdvancedMarker, Pin } from '@vis.gl/react-google-maps';
-import { TPin } from '../../types/pins';
+import type { TPin } from '../../types/pins';
 
 export type PinMarkerProps = {
   pin: TPin;
@@ -10,9 +10,6 @@ export type PinMarkerProps = {
   setPins: React.Dispatch<React.SetStateAction<TPin[]>>
 };
 
-/**
- * Wrapper Component for an AdvancedMarker for a single tree.
- */
 export const PinMarker = (props: PinMarkerProps) => {
   const { pin, onClick, setMarkerRef, setPins } = props;
 
@@ -31,9 +28,9 @@ export const PinMarker = (props: PinMarkerProps) => {
       draggable
       onDrag={(e) => {
         setPins((pins) => {
-          const modifiedPin = pins.find((p) => p.key === pin.key);
-          modifiedPin.coordinates.lat = e.latLng?.lat();
-          modifiedPin.coordinates.lng = e.latLng?.lng();
+          const modifiedPin = pins.find(({ key }) => key === pin.key);
+          modifiedPin!.coordinates.lat = e.latLng?.lat() as number;
+          modifiedPin!.coordinates.lng = e.latLng?.lng() as number;
 
           return [...pins]
         })

@@ -1,0 +1,25 @@
+.pin-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  background: #dcf4d4;
+  padding: 10px;
+}
+
+.pin-item__text {
+  margin: 0;
+}
+
+.pin-item__delete {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+}
+
+.pin-item__delete:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}

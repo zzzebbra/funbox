@@ -1,16 +1,18 @@
 import React from 'react'
 import PinItem from '../PinItem/PinItem';
-import type { TPins } from '../../types/pins';
+import type { TPin } from '../../types/pins';
 
-const PinsList = ({ pins }: TPins): JSX.Element => {
-  // const [pinsList, setPinsList] = useState(pins);
+type TProps = {
+  pins: TPin[],
+  deletePin: (key: string) => void
+};
+
+const PinsList = ({ pins, deletePin }: TProps): JSX.Element => {
+
   return (
-    <div>
-      {pins && pins.map(({name, coordinates }) => {
-        return (
-          <PinItem key={name} name={name} coordinates={coordinates} />
-        )
-      })}
+    <div className='pin-list'>
+      {pins.map(({ name, key }) => (<PinItem key={key} name={name} pinKey={key} deletePin={deletePin} />)
+      )}
     </div>
   )
 }
