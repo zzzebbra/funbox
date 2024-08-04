@@ -26,9 +26,6 @@ type PolylineEventProps = {
 };
 
 type PolylineCustomProps = {
-  /**
-   * this is an encoded string for the path, will be decoded and used as a path
-   */
   encodedPath?: string;
 };
 
@@ -49,7 +46,7 @@ function usePolyline(props: PolylineProps) {
     encodedPath,
     ...polylineOptions
   } = props;
-  // This is here to avoid triggering the useEffect below when the callbacks change (which happen if the user didn't memoize them)
+
   const callbacks = useRef<Record<string, (e: unknown) => void>>({});
   Object.assign(callbacks.current, {
     onClick,
@@ -63,9 +60,6 @@ function usePolyline(props: PolylineProps) {
   const geometryLibrary = useMapsLibrary('geometry');
 
   const polyline = useRef(new google.maps.Polyline()).current;
-  // update PolylineOptions (note the dependencies aren't properly checked
-  // here, we just assume that setOptions is smart enough to not waste a
-  // lot of time updating values that didn't change)
   useMemo(() => {
     polyline.setOptions(polylineOptions);
   }, [polyline, polylineOptions]);
@@ -95,11 +89,9 @@ function usePolyline(props: PolylineProps) {
     };
   }, [map]);
 
-  // attach and re-attach event-handlers when any of the properties change
   useEffect(() => {
     if (!polyline) return;
 
-    // Add event listeners
     const gme = google.maps.event;
     [
       ['click', 'onClick'],
@@ -123,9 +115,6 @@ function usePolyline(props: PolylineProps) {
   return polyline;
 }
 
-/**
- * Component to render a polyline on a map
- */
 export const Polyline = forwardRef((props: PolylineProps, ref: PolylineRef) => {
   const polyline = usePolyline(props);
 

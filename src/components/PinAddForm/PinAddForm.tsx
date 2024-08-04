@@ -19,7 +19,7 @@ const PinAddForm = ({ setPins }: TProps) => {
     const newPin = {} as TPin;
     newPin.name = pinName;
     newPin.coordinates = { lat: map?.getCenter()?.lat() as number, lng: map?.getCenter()?.lng() as number };
-    newPin.key = window.crypto.randomUUID();
+    newPin.id = window.crypto.randomUUID();
     setPins((pins) => { return [...pins, newPin] });
     setPinName('');
   };

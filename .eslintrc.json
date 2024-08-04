@@ -21,6 +21,7 @@
   ],
   "rules": {
     "react/function-component-definition": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }

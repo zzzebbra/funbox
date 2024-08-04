@@ -16,8 +16,8 @@ export const PinMarker = (props: PinMarkerProps) => {
   const handleClick = useCallback(() => onClick(pin), [onClick, pin]);
   const ref = useCallback(
     (marker: google.maps.marker.AdvancedMarkerElement) =>
-      setMarkerRef(marker, pin.key),
-    [setMarkerRef, pin.key]
+      setMarkerRef(marker, pin.id),
+    [setMarkerRef, pin.id]
   );
 
   return (
@@ -28,7 +28,7 @@ export const PinMarker = (props: PinMarkerProps) => {
       draggable
       onDrag={(e) => {
         setPins((pins) => {
-          const modifiedPin = pins.find(({ key }) => key === pin.key);
+          const modifiedPin = pins.find(({ id }) => id === pin.id);
           modifiedPin!.coordinates.lat = e.latLng?.lat() as number;
           modifiedPin!.coordinates.lng = e.latLng?.lng() as number;
 

@@ -20,7 +20,7 @@ const MapComponent = ({ pins, setPins }: TProps) => {
   const selectedPin = useMemo(
     () =>
       pins && selectedPinKey
-        ? pins.find(pin => pin.key === selectedPinKey)!
+        ? pins.find(pin => pin.id === selectedPinKey)!
         : null,
     [pins, selectedPinKey]
   );
@@ -46,7 +46,7 @@ const MapComponent = ({ pins, setPins }: TProps) => {
   }, []);
 
   const handleMarkerClick = useCallback((pin: TPin) => {
-    setSelectedPinKey(pin.key);
+    setSelectedPinKey(pin.id);
   }, []);
 
   return (
@@ -65,7 +65,7 @@ const MapComponent = ({ pins, setPins }: TProps) => {
         {pins && pins.map((pin) => {
           return (
             <PinMarker
-              key={pin.key}
+              key={pin.id}
               onClick={handleMarkerClick}
               setMarkerRef={setMarkerRef}
               setPins={setPins}

@@ -10,7 +10,7 @@ function App() {
   const [pins, setPins] = useState<TPin[]>([]);
 
   const deletePin = (key: string) => {
-    const newPins = pins.filter((pin) => pin.key !== key);
+    const newPins = pins.filter((pin) => pin.id !== key);
     setPins(newPins);
   };
 
@@ -19,7 +19,7 @@ function App() {
       <div className="App">
         <div className="pins">
           <PinAddForm setPins={setPins} />
-          <PinsList pins={pins} deletePin={deletePin} />
+          <PinsList pins={pins} deletePin={deletePin} setPins={setPins} />
         </div>
         <MapComponent pins={pins} setPins={setPins} />
       </div>
