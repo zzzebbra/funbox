@@ -3,15 +3,17 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import type { TPin } from "../../types/pins";
 import removeIcon from "../../assets/icons/remove.svg";
-import dragIcon from "../../assets/icons/drag.svg";
+import dragIndicator from "../../assets/icons/dragIndicator.svg";
 
 type TProps = {
   name: TPin["name"];
   pinKey: TPin["id"];
+  address: TPin['address'];
   deletePin: (pinKey: string) => void;
 };
 
-const PinItem = ({ name, pinKey, deletePin }: TProps): JSX.Element => {
+const PinItem = ({ name, pinKey, address, deletePin }: TProps): JSX.Element => {
+
   const {
     attributes,
     listeners,
@@ -30,7 +32,10 @@ const PinItem = ({ name, pinKey, deletePin }: TProps): JSX.Element => {
 
   return (
     <div className="pin-item" style={style} data-cy="pin-item">
-      <p className="pin-item__text">{name}</p>
+      <div className="pin-item__texts">
+        <p className="pin-item__text">{name}</p>
+        <p className="pin-item__text">{address}</p>
+      </div>
       <div className="pin-item__buttons">
         <button
           type="button"
@@ -50,7 +55,7 @@ const PinItem = ({ name, pinKey, deletePin }: TProps): JSX.Element => {
           {...listeners}
           data-cy="pin-item-drag-button"
         >
-          <img src={dragIcon} alt="drag icon" />
+          <img src={dragIndicator} alt="drag icon" />
         </button>
       </div>
     </div>

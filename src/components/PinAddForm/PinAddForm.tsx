@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { useMap } from "@vis.gl/react-google-maps";
 import type { TPin } from "../../types/pins";
 
@@ -9,6 +9,23 @@ type TProps = {
 const PinAddForm = ({ setPins }: TProps) => {
   const map = useMap();
   const [pinName, setPinName] = useState("");
+  const [address, setAddress] = useState('');
+  const [geocoder, setGeocoder] = useState<google.maps.Geocoder | null>(null);
+
+  useEffect(() => {
+    if (map) {
+      setGeocoder(new google.maps.Geocoder())
+    }
+  }, [map]);
+
+  useEffect(() => {
+    if(geocoder){
+      (async function getAddress() {
+        await geocoder.geocode({ location: {lat: map?.getCenter()?.lat() as number, lng: map?.getCenter()?.lng() as number} }).then((response) => { setAddress(response.results[0].formatted_address) });
+      })();
+    }
+  }, [map?.getCenter(), geocoder])
+
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setPinName(evt.target.value);
@@ -23,6 +40,7 @@ const PinAddForm = ({ setPins }: TProps) => {
       lng: map?.getCenter()?.lng() as number,
     };
     newPin.id = window.crypto.randomUUID();
+    newPin.address = address;
     setPins((pins) => {
       return [...pins, newPin];
     });

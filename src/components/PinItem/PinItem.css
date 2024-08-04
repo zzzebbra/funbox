@@ -11,6 +11,7 @@
 
 .pin-item__text {
   margin: 0;
+  text-align: left;
 }
 
 .pin-item__delete,
@@ -39,5 +40,13 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
+}
+
+.pin-item__texts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
   gap: 10px;
 }

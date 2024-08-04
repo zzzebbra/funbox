@@ -62,7 +62,7 @@ const MapComponent = ({ pins, setPins }: TProps) => {
           strokeWeight={6}
           strokeColor="#ff22cc88"
         />
-        {pins && pins.map((pin) => {
+        {pins.map((pin) => {
           return (
             <PinMarker
               key={pin.id}

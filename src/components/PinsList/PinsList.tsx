@@ -54,8 +54,8 @@ const PinsList = ({ pins, deletePin, setPins }: TProps): JSX.Element => {
         onDragEnd={handleDragEnd}
       >
         <SortableContext items={pins} strategy={verticalListSortingStrategy}>
-          {pins.map(({ name, id }) => (
-            <PinItem key={id} name={name} pinKey={id} deletePin={deletePin} />
+          {pins.map(({ name, id, address }) => (
+            <PinItem key={id} name={name} pinKey={id} address={address} deletePin={deletePin} />
           ))}
         </SortableContext>
       </DndContext>
