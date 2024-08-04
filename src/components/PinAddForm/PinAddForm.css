@@ -6,13 +6,13 @@
   padding: 10px;
   color: #fff;
   border-radius: 8px;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
 }
 
 .add-button:hover {
   cursor: pointer;
   opacity: 0.8;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
 }
 
 .add-button_disabled {

@@ -24,17 +24,21 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write src/"
+    "prettier": "prettier --write src/",
+    "test": "npx cypress open",
+    "test-cli": "cypress run --config baseUrl=http://localhost:3000"
   },
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.2.5",
     "@typescript-eslint/eslint-plugin": "^7.11.0",
     "@typescript-eslint/parser": "^7.11.0",
+    "cypress": "^13.13.2",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-cypress": "^3.4.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.1.1",

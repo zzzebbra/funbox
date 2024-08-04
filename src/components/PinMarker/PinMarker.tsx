@@ -1,13 +1,13 @@
-import type { Marker } from '@googlemaps/markerclusterer';
-import React, { useCallback } from 'react';
-import { AdvancedMarker, Pin } from '@vis.gl/react-google-maps';
-import type { TPin } from '../../types/pins';
+import type { Marker } from "@googlemaps/markerclusterer";
+import React, { useCallback } from "react";
+import { AdvancedMarker, Pin } from "@vis.gl/react-google-maps";
+import type { TPin } from "../../types/pins";
 
 export type PinMarkerProps = {
   pin: TPin;
   onClick: (pin: TPin) => void;
   setMarkerRef: (marker: Marker | null, key: string) => void;
-  setPins: React.Dispatch<React.SetStateAction<TPin[]>>
+  setPins: React.Dispatch<React.SetStateAction<TPin[]>>;
 };
 
 export const PinMarker = (props: PinMarkerProps) => {
@@ -17,7 +17,7 @@ export const PinMarker = (props: PinMarkerProps) => {
   const ref = useCallback(
     (marker: google.maps.marker.AdvancedMarkerElement) =>
       setMarkerRef(marker, pin.id),
-    [setMarkerRef, pin.id]
+    [setMarkerRef, pin.id],
   );
 
   return (
@@ -32,8 +32,8 @@ export const PinMarker = (props: PinMarkerProps) => {
           modifiedPin!.coordinates.lat = e.latLng?.lat() as number;
           modifiedPin!.coordinates.lng = e.latLng?.lng() as number;
 
-          return [...pins]
-        })
+          return [...pins];
+        });
       }}
     >
       <Pin />

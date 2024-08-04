@@ -1,8 +1,8 @@
-@import '/src/App.css';
-@import '/src/components/MapComponent/MapComponent.css';
-@import '/src/components/PinAddForm/PinAddForm.css';
-@import '/src/components/PinItem/PinItem.css';
-@import '/src/components/PinsList/PinsList.css';
+@import "/src/App.css";
+@import "/src/components/MapComponent/MapComponent.css";
+@import "/src/components/PinAddForm/PinAddForm.css";
+@import "/src/components/PinItem/PinItem.css";
+@import "/src/components/PinsList/PinsList.css";
 
 body {
   margin: 0;
