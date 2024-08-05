@@ -1,3 +1,9 @@
+@import "/src/App.css";
+@import "/src/components/MapComponent/MapComponent.css";
+@import "/src/components/PinAddForm/PinAddForm.css";
+@import "/src/components/PinItem/PinItem.css";
+@import "/src/components/PinsList/PinsList.css";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -7,7 +13,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.pins {
+  padding: 20px;
+  width: 30%;
+}
+
+@media screen and (max-width: 768px) {
+  .pins {
+    min-height: 50svh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
 }

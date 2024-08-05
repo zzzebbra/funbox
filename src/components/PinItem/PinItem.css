@@ -1,0 +1,52 @@
+.pin-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  background: #dcf4d4;
+  padding: 10px;
+  transition: all 0.3s linear;
+}
+
+.pin-item__text {
+  margin: 0;
+  text-align: left;
+}
+
+.pin-item__delete,
+.pin-item__drag {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  transition: all 0.3s linear;
+}
+
+.pin-item__delete:hover {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.3s linear;
+}
+
+.pin-item__drag:hover {
+  cursor: grab;
+  opacity: 0.5;
+  transition: all 0.3s linear;
+}
+
+.pin-item__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.pin-item__texts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+}

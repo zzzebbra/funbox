@@ -1,19 +1,29 @@
-import React from "react";
-import { APIProvider, Map } from "@vis.gl/react-google-maps";
+import React, { useState } from "react";
 import "./App.css";
+import { APIProvider } from "@vis.gl/react-google-maps";
+import MapComponent from "./components/MapComponent/MapComponent";
+import PinAddForm from "./components/PinAddForm/PinAddForm";
+import PinsList from "./components/PinsList/PinsList";
+import type { TPin } from "./types/pins";
 
 function App() {
-  const mapCenter = { lat: 55.75222, lng: 37.61556 };
+  const [pins, setPins] = useState<TPin[]>([]);
+
+  const deletePin = (key: string) => {
+    const newPins = pins.filter((pin) => pin.id !== key);
+    setPins(newPins);
+  };
+
   return (
-    <div className="App">
-      <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string}>
-        <Map
-          zoom={11}
-          center={mapCenter}
-          mapId={process.env.REACT_APP_GOOGLE_MAPS_MAP_ID}
-        />
-      </APIProvider>
-    </div>
+    <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string}>
+      <div className="App">
+        <div className="pins">
+          <PinAddForm setPins={setPins} />
+          <PinsList pins={pins} deletePin={deletePin} setPins={setPins} />
+        </div>
+        <MapComponent pins={pins} setPins={setPins} />
+      </div>
+    </APIProvider>
   );
 }
 
